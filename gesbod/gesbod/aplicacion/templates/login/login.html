@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titleHead %}
+<title>GesBod - Inicio de sesión.</title>
+{% endblock %}
+
+{% block cssHead %}
+<link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
+<link rel="stylesheet" href="{% static 'css/signin.css' %}" />
+{% endblock %}
+
+{% block contenido %}
+
+<form class="form-signin" method="post">
+  <p class="text-center">
+    <img class="mb-4" src="{% static 'img/login.png' %}" alt="" width="72" height="72" />
+  </p>
+  <h1 class="h1 mb-3 font-weight-normal text-center">Iniciar sesión.</h1>
+  {% csrf_token %}
+
+  {% if form.non.field.errors %}
+    {{ form.non.field.errors }}
+  {% endif %}
+  
+  {% for field in form.visible_fields %}
+    {{ field.label_tag }}
+    {{ field }}
+  {% endfor %}
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+</form>
+
+{% endblock %}

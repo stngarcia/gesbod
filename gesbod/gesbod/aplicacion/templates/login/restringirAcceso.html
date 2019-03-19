@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titleHead %}
+<title>GesBod - Acceso restringido.</title>
+{% endblock %}
+
+{% block cssHead %}
+<link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
+{% endblock %}
+
+{% block contenido %}
+<div class="starter-template">
+  <h1>Acceso restringido.</h1>
+  <p class="lead">
+      El apartado al que intenta acceder necesita el inicio de sesión.
+  </p>
+</div>
+
+ {% endblock %}
