@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titleHead %}
-<title>GesBod - Registro de editorial.</title>
+<title>GesBod - Edición de categoría.</title>
 {% endblock %}
 
 {% block cssHead %}
@@ -11,9 +11,9 @@
 
 {% block contenido %}
 <div class="starter-template">
-  <h1>Registro de editorial.</h1>
+  <h1>Edición de categoría.</h1>
   <p class="lead">
-      Ingrese los datos de la nueva editorial.
+      Modifique los datos de la categoría.
   </p>
   <form method="post">
     {% csrf_token %}
@@ -28,8 +28,8 @@
           {{ field }}
         </div>
     {% endfor %}
-    <button class="btn btn-lg btn-primary " type="submit"> Registrar editorial </button>
-    <a class="btn btn-light" href="{% url 'listaDeEditoriales' %}" role="button"> Cancelar </a></p>
+    <button class="btn btn-lg btn-primary " type="submit"> Grabar </button>
+    <a class="btn btn-light" href="{% url 'listaDeCategorias' %}" role="button"> Cancelar </a></p>
   </form>
 </div>
 

@@ -3,6 +3,7 @@ django-extensions==1.5.5
 djangorestframework==3.9.1
 django-cors-headers==2.5.2
 dj-database-url==0.5.0
+cx-Oracle==7.1.2
 social-auth-app-django==3.1.0
 django-pwa==1.0.4
 python-decouple==2.3
