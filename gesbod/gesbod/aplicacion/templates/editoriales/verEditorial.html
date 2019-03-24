@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block titleHead %}
 <title>GesBod - Ver editorial.</title>
-{% endblock %}
-
-{% block cssHead %}
-<link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
 {% endblock %}
 
 {% block contenido %}
@@ -22,6 +17,14 @@
               <tr>
                 <td>Nombre</td>
                 <td>{{ editorial.nombre }}</td>
+              </tr>
+              <tr>
+                <td>Estado</td>
+                {% if editorial.habilitado %}
+                  <td>Activa</td>
+                {% else %}
+                  <td>Inhabilitada</td>
+                {% endif %}
               </tr>
               <tr>
                 <td></td>

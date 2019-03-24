@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block titleHead %}
 <title>GesBod - Lista de editoriales.</title>
-{% endblock %}
-
-{% block cssHead %}
-<link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
 {% endblock %}
 
 {% block contenido %}
@@ -18,7 +13,6 @@
           <label class="control-label" for="buscar">Editorial :</label>
           <input name="q" class="form-control mr-sm-2" type="text" aria-label="buscar" value="">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Buscar 
-              <i class="fa fa-search"></i>
           </button>
         </form>
   </p>
@@ -29,6 +23,8 @@
         <tr>
           <th>Id</th>
           <th>Nombre editorial</th>
+          <th>Estado</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +32,11 @@
               <tr>
                 <td>{{ editorial.id }}</td>
                   <td>{{ editorial.nombre }}</td>
+                  {% if editorial.habilitado %}
+                    <td>Activa</td>
+                  {% else %}
+                    <td>Inhabilitada</td>
+                  {% endif %}
                   <td>
                       <a class="btn btn-light" href="{% url 'verEditorial' editorial.id %}" role="button"> Ver </a>
                       <a class="btn btn-light" href="{% url 'editarEditorial' editorial.id %}" role="button"> Editar </a>

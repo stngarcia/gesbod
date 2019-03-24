@@ -1,4 +1,5 @@
 import operator
+from django.conf import settings
 from functools import reduce
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
@@ -12,7 +13,7 @@ from gesbod.aplicacion.forms import CategoriaForm
 class ListaDeCategorias(ListView):
     model = Categoria
     template_name = 'categorias/listaDeCategorias.html'
-    paginate_by = 5
+    paginate_by = settings.REGISTROS_POR_PAGINA
 
     def get_queryset(self):
         result = super(ListaDeCategorias, self).get_queryset()

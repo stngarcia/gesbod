@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block titleHead %}
-<title>GesBod - Lista de usuarios.</title>
+<title>GesBod - Lista de autores.</title>
 {% endblock %}
 
 {% block contenido %}
 <div class="starter-template">
-  <h1>Lista de usuarios.</h1>
+  <h1>Lista de autores.</h1>
   <p><a class="btn btn-primary" href="{% url 'registrarAutor' %}" role="button"> Agregar autor </a></p>
   <p class="text-justify">
-      <form class="form-inline my-2 my-lg-0" action="{% url 'listaDeUsuarios' %}" method="get" accept-charset="utf-8">
+      <form class="form-inline my-2 my-lg-0" action="{% url 'listaDeAutores' %}" method="get" accept-charset="utf-8">
           <label class="control-label" for="buscar">
-              <span class="glyphicon glyphicon-filter"> Usuario:</span>
+              <span class="glyphicon glyphicon-filter"> Autor:</span>
           </label>
           <input name="q" class="form-control mr-sm-2" type="text" aria-label="buscar" value="">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
@@ -20,48 +20,41 @@
         </form>
   </p>
   <hr>
-    {% if user_list %}
-    <table >
+    {% if autor_list %}
+    <table class="table table-responsive table-bordered table-hover table-striped">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Usuario</th>
           <th>Nombre</th>
-          <th>Email</th>
-          <th>Tipo</th>
+          <th>Apellidos</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-            {% for usuario in user_list %}
+            {% for autor in autor_list %}
               <tr>
-                  <td>{{ usuario.id }}</td>
-                  <td>{{ usuario.username }}</td>
-                  <td>{{ usuario.first_name }} {{ usuario.last_name }}</td>
-                  <td>{{ usuario.email }}</td>
-                  {% if usuario.is_superuser %}
-                  <td>Administrador</td>
-                  {% else %}
-                  <td>Operador</td>
-                  {% endif %}
-                  {% if usuario.is_active %}
+                <td>{{ autor.id }}</td>
+                  <td>{{ autor.nombre }}</td>
+                  <td>{{ autor.apellidos }} {{ usuario.last_name }}</td>
+                  {% if autor.habilitado %}
                     <td>
                         <span class="glyphicon glyphicon-ok"> Activo</span>
                     </td>
                   {% else %}
                     <td>
-                        <spam class="glyphicon glyphicon-remove"> Inhabilitado</spam>
+                        <spam
+                         class="glyphicon glyphicon-remove"> Inhabilitado</spam>
                     </td>
                   {% endif %}
                   <td>
-                      <a class="btn btn-light" href="{% url 'verUsuario' usuario.id %}" role="button">
+                      <a class="btn btn-light" href="{% url 'verAutor' autor.id %}" role="button">
                           <span class="glyphicon glyphicon-info-sign"> Ver</span>
                       </a>
-                      <a class="btn btn-light" href="{% url 'editarUsuario' usuario.id %}" role="button">
+                      <a class="btn btn-light" href="{% url 'editarAutor' autor.id %}" role="button">
                         <span class="glyphicon glyphicon-edit"> Editar</span>
                       </a>
-                      <a class="btn btn-light" href="{% url 'eliminarUsuario' usuario.id %}" role="button">
+                      <a class="btn btn-light" href="{% url 'eliminarAutor' autor.id %}" role="button">
                           <span class="glyphicon glyphicon-remove-circle"> Eliminar</span>
                       </a>
                   </td>

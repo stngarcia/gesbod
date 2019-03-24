@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block titleHead %}
 <title>GesBod - Sistema de gestión de bodega.</title>
-{% endblock %}
-
-{% block cssHead %}
-<link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
-<link rel="stylesheet" href="{% static 'css/jumbotron.css' %}" />
 {% endblock %}
 
 {% block contenido %}
@@ -24,7 +18,7 @@
                   <li>Asignar libros a las sucursales</li>
                   <li>Inhabilitar libros.</li>
               </ul>
-              <p><a class="btn btn-secondary" href="#" role="button"> Ir &raquo;</a></p>
+              <p><a class="btn btn-secondary" href="{% url 'listaDeAutores' %}" role="button"> Ir &raquo;</a></p>
             </div>
             <div class="col-md-4">
               <h2>Editoriales</h2>
@@ -42,7 +36,7 @@
                     <li> Editar información de autores.</li>
                     <li>Inhabilitar autores.</li>
                 </ul>
-                <p><a class="btn btn-secondary" href="#" role="button"> Ir &raquo;</a></p>
+                <p><a class="btn btn-secondary" href="{% url 'listaDeAutores' %}" role="button"> Ir &raquo;</a></p>
             </div>
           </div>
   

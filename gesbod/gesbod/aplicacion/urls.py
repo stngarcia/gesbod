@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from gesbod.aplicacion.views import inicio, login, usuarios, editoriales, categorias
+from gesbod.aplicacion.views import inicio, login, usuarios, editoriales, categorias, autores
 
 
 urlpatterns = [
@@ -47,4 +47,16 @@ urlpatterns = [
         categorias.EliminarCategoria.as_view(), name='eliminarCategoria'),
     url(r'^ver/categoria/(?P<pk>\d+)$',
         categorias.VerCategoria.as_view(), name='verCategoria'),
+
+    # Rutas para los autores.
+    url(r'^lista/autor/$', autores.ListaDeAutores.as_view(),
+        name='listaDeAutores'),
+    url(r'^registrar/autor/$', autores.RegistrarAutor.as_view(),
+        name='registrarAutor'),
+    url(r'^editar/autor/(?P<pk>\d+)$',
+        autores.EditarAutor.as_view(), name='editarAutor'),
+    url(r'^eliminar/autor/(?P<pk>\d+)$',
+        autores.EliminarAutor.as_view(), name='eliminarAutor'),
+    url(r'^ver/autor/(?P<pk>\d+)$',
+        autores.VerAutor.as_view(), name='verAutor'),
 ]

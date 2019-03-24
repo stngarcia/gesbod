@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block titleHead %}
 <title>GesBod - Ver categoría.</title>
-{% endblock %}
-
-{% block cssHead %}
-<link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
 {% endblock %}
 
 {% block contenido %}
@@ -23,6 +18,14 @@
                 <td>Nombre</td>
                 <td>{{ categoria.nombre }}</td>
               </tr>
+              <tr>
+                  <td>Estado</td>
+                  {% if categoria.habilitado %}
+                  <td>Activa</td>
+                  {% else %}
+                    <td>Inhabilitada</td>
+                  {% endif %}
+                </tr>
               <tr>
                 <td></td>
                 <td>

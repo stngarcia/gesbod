@@ -123,3 +123,7 @@ STATICFILES_DIRS = [
 # rutas para la carpeta media.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'gesbod', 'media')
 MEDIA_URL = '/media/'
+
+
+# Definiendo cantidad de registros por pagina.
+REGISTROS_POR_PAGINA = 5

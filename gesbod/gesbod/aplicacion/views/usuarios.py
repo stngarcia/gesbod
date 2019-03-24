@@ -1,10 +1,11 @@
+from django.conf import settings
 import operator
 from functools import reduce
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.db.models import Q
-from gesbod.aplicacion.forms import RegistrarUsuarioForm
+from gesbod.aplicacion.forms import UsuarioForm
 
 
 # ListaDeUsuarios
@@ -12,7 +13,7 @@ from gesbod.aplicacion.forms import RegistrarUsuarioForm
 class ListaDeUsuarios(ListView):
     model = User
     template_name = 'usuarios/listaDeUsuarios.html'
-    paginate_by = 5
+    paginate_by = settings.REGISTROS_POR_PAGINA
 
     def get_queryset(self):
         result = super(ListaDeUsuarios, self).get_queryset()
@@ -38,7 +39,7 @@ class VerUsuario(DetailView):
 # Clase que permite registrar un nuevo usuario.
 class RegistrarUsuario(CreateView):
     model = User
-    form_class = RegistrarUsuarioForm
+    form_class = UsuarioForm
     template_name = 'usuarios/registrarUsuario.html'
     success_url = reverse_lazy('listaDeUsuarios')
 
@@ -47,7 +48,7 @@ class RegistrarUsuario(CreateView):
 # Clase que permite editar la informacion de un usuario.
 class EditarUsuario(UpdateView):
     model = User
-    form_class = RegistrarUsuarioForm
+    form_class = UsuarioForm
     template_name = 'usuarios/editarUsuario.html'
     success_url = reverse_lazy('listaDeUsuarios')
 
