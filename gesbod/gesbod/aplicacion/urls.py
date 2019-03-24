@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from gesbod.aplicacion.views import inicio, login, usuarios
+from gesbod.aplicacion.views import inicio, login, usuarios, editoriales
 
 
 urlpatterns = [
@@ -13,12 +13,22 @@ urlpatterns = [
     url(r'^restringirAcceso/$', login.restringirAcceso, name='restringirAcceso'),
 
     # Rutas para las cuentas de usuario.
-    url(r'^usuarios/$', usuarios.ListaDeUsuarios.as_view(), name='listaDeUsuarios'),
-    url(r'^registrar/$', usuarios.RegistrarUsuario.as_view(), name='registrarUsuario'),
-    url(r'^editarUsuario/(?P<pk>\d+)$',
+    url(r'^lista/usuario/$', usuarios.ListaDeUsuarios.as_view(), name='listaDeUsuarios'),
+    url(r'^registrar/usuario/$', usuarios.RegistrarUsuario.as_view(), name='registrarUsuario'),
+    url(r'^editar/usuario/(?P<pk>\d+)$',
         usuarios.EditarUsuario.as_view(), name='editarUsuario'),
-    url(r'^eliminarUsuario/(?P<pk>\d+)$',
+    url(r'^eliminar/usuario/(?P<pk>\d+)$',
         usuarios.EliminarUsuario.as_view(), name='eliminarUsuario'),
-    url(r'^verUsuario/(?P<pk>\d+)$',
+    url(r'^ver/usuario/(?P<pk>\d+)$',
         usuarios.VerUsuario.as_view(), name='verUsuario'),
+
+    # Rutas para las editoriales.
+    url(r'^lista/editorial/$', editoriales.ListaDeEditoriales.as_view(), name='listaDeEditoriales'),
+    url(r'^registrar/editorial/$', editoriales.RegistrarEditorial.as_view(), name='registrarEditorial'),
+    url(r'^editar/editorial/(?P<pk>\d+)$',
+        editoriales.EditarEditorial.as_view(), name='editarEditorial'),
+    url(r'^eliminar/editorial/(?P<pk>\d+)$',
+        editoriales.EliminarEditorial.as_view(), name='eliminarEditorial'),
+    url(r'^ver/editorial/(?P<pk>\d+)$',
+        editoriales.VerEditorial.as_view(), name='verEditorial'),
 ]

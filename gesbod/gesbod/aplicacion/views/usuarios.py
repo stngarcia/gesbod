@@ -1,11 +1,10 @@
 import operator
-import functools
 from functools import reduce
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.db.models import Q
-from gesbod.aplicacion.forms import registrarUsuarioForm
+from gesbod.aplicacion.forms import RegistrarUsuarioForm
 
 
 # ListaDeUsuarios
@@ -39,7 +38,7 @@ class VerUsuario(DetailView):
 # Clase que permite registrar un nuevo usuario.
 class RegistrarUsuario(CreateView):
     model = User
-    form_class = registrarUsuarioForm
+    form_class = RegistrarUsuarioForm
     template_name = 'usuarios/registrarUsuario.html'
     success_url = reverse_lazy('listaDeUsuarios')
 
@@ -48,7 +47,7 @@ class RegistrarUsuario(CreateView):
 # Clase que permite editar la informacion de un usuario.
 class EditarUsuario(UpdateView):
     model = User
-    form_class = registrarUsuarioForm
+    form_class = RegistrarUsuarioForm
     template_name = 'usuarios/editarUsuario.html'
     success_url = reverse_lazy('listaDeUsuarios')
 
