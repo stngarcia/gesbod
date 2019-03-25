@@ -5,23 +5,23 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="starter-template">
+
   <h1>Lista de usuarios.</h1>
-  <p><a class="btn btn-primary" href="{% url 'registrarAutor' %}" role="button"> Agregar autor </a></p>
-  <p class="text-justify">
-      <form class="form-inline my-2 my-lg-0" action="{% url 'listaDeUsuarios' %}" method="get" accept-charset="utf-8">
-          <label class="control-label" for="buscar">
-              <span class="glyphicon glyphicon-filter"> Usuario:</span>
-          </label>
-          <input name="q" class="form-control mr-sm-2" type="text" aria-label="buscar" value="">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              <span class="gliphicon gliphicon-search"> Buscar</span>
-          </button>
-        </form>
+  <p>
+    <a class="btn btn-primary" href="{% url 'registrarUsuario' %}" role="button"> Agregar usuario </a>
+    <form class="form-inline" action="{% url 'listaDeUsuarios' %}" method="get" accept-charset="utf-8">
+        <label class="control-label" for="buscar">
+          <span class="glyphicon glyphicon-filter"> Usuario:</span>
+        </label>
+        <input name="q" class="form-control mr-sm-2" type="text" aria-label="buscar" value="">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          <span class="gliphicon gliphicon-search"> Buscar</span>
+      </button>
+    </form>
   </p>
   <hr>
     {% if user_list %}
-    <table >
+    <table  class="table table-bordered table-responsive">
       <thead>
         <tr>
           <th>Id</th>
@@ -120,6 +120,5 @@
         No hay autores registrados.
     </p>
     {% endif %}
-  </div>
-
+  
  {% endblock %}

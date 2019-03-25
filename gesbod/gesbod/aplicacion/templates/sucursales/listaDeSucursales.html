@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block titleHead %}
-<title>GesBod - Lista de autores.</title>
+<title>GesBod - Lista de sucursales.</title>
 {% endblock %}
 
 {% block contenido %}
 
-  <h1>Lista de autores.</h1>
-  <p><a class="btn btn-primary" href="{% url 'registrarAutor' %}" role="button"> Agregar autor </a>
-    <form class="form-inline my-2 my-lg-0" action="{% url 'listaDeAutores' %}" method="get" accept-charset="utf-8">
+  <h1>Lista de sucursales.</h1>
+  <p>
+    <a class="btn btn-primary" href="{% url 'registrarSucursal' %}" role="button"> Agregar sucursal </a>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'listaDeSucursales' %}" method="get" accept-charset="utf-8">
       <label class="control-label" for="buscar">
-        <span class="glyphicon glyphicon-filter"> Autor:</span>
+        <span class="glyphicon glyphicon-filter"> Sucursal:</span>
       </label>
       <input name="q" class="form-control mr-sm-2" type="text" aria-label="buscar" value="">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
@@ -19,41 +20,42 @@
     </form>
   </p>
   <hr>
-    {% if autor_list %}
+    {% if sucursal_list %}
     <table class="table table-responsive table-bordered">
       <thead>
         <tr>
           <th>Id</th>
           <th>Nombre</th>
-          <th>Apellidos</th>
+          <th>Encargado</th>
+          <th>Dirección</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-            {% for autor in autor_list %}
+            {% for sucursal in sucursal_list %}
               <tr>
-                <td>{{ autor.id }}</td>
-                  <td>{{ autor.nombre }}</td>
-                  <td>{{ autor.apellidos }} {{ usuario.last_name }}</td>
-                  {% if autor.habilitado %}
+                <td>{{ sucursal.id }}</td>
+                  <td>{{ sucursal.nombre }}</td>
+                  <td>{{ sucursal.encargado }} {{ usuario.last_name }}</td>
+                  <td>{{ sucursal.direccion }} {{ usuario.last_name }}</td>
+                  {% if sucursal.habilitado %}
                     <td>
-                        <span class="glyphicon glyphicon-ok"> Activo</span>
+                        <span class="glyphicon glyphicon-ok"> Activa</span>
                     </td>
                   {% else %}
                     <td>
-                        <spam
-                         class="glyphicon glyphicon-remove"> Inhabilitado</spam>
+                        <spam class="glyphicon glyphicon-remove"> Inhabilitada</spam>
                     </td>
                   {% endif %}
                   <td>
-                      <a class="btn btn-light" href="{% url 'verAutor' autor.id %}" role="button">
+                      <a class="btn btn-light" href="{% url 'verSucursal' sucursal.id %}" role="button">
                           <span class="glyphicon glyphicon-info-sign"> Ver</span>
                       </a>
-                      <a class="btn btn-light" href="{% url 'editarAutor' autor.id %}" role="button">
+                      <a class="btn btn-light" href="{% url 'editarSucursal' sucursal.id %}" role="button">
                         <span class="glyphicon glyphicon-edit"> Editar</span>
                       </a>
-                      <a class="btn btn-light" href="{% url 'eliminarAutor' autor.id %}" role="button">
+                      <a class="btn btn-light" href="{% url 'eliminarSucursal' sucursal.id %}" role="button">
                           <span class="glyphicon glyphicon-remove-circle"> Eliminar</span>
                       </a>
                   </td>
@@ -109,7 +111,7 @@
 
     {% else %}
     <p class="lead">
-        No hay autores registrados.
+        No hay sucursales registradas.
     </p>
     {% endif %}
   

@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from gesbod.aplicacion.views import inicio, login, usuarios, editoriales, categorias, autores
+from gesbod.aplicacion.views import inicio, login, usuarios, editoriales, categorias, autores, sucursales
 
 
 urlpatterns = [
@@ -59,4 +59,16 @@ urlpatterns = [
         autores.EliminarAutor.as_view(), name='eliminarAutor'),
     url(r'^ver/autor/(?P<pk>\d+)$',
         autores.VerAutor.as_view(), name='verAutor'),
+
+    # Rutas para las sucursales.
+    url(r'^lista/sucursal/$', sucursales.ListaDeSucursales.as_view(),
+        name='listaDeSucursales'),
+    url(r'^registrar/sucursal/$', sucursales.RegistrarSucursal.as_view(),
+        name='registrarSucursal'),
+    url(r'^editar/sucursal/(?P<pk>\d+)$',
+        sucursales.EditarSucursal.as_view(), name='editarSucursal'),
+    url(r'^eliminar/sucursal/(?P<pk>\d+)$',
+        sucursales.EliminarSucursal.as_view(), name='eliminarSucursal'),
+    url(r'^ver/sucursal/(?P<pk>\d+)$',
+        sucursales.VerSucursal.as_view(), name='verSucursal'),
 ]

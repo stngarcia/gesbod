@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Editorial, Categoria, Autor
+from .models import Editorial, Categoria, Autor, Sucursal
 
 
 # IniciarSesionForm
@@ -45,3 +45,11 @@ class AutorForm(ModelForm):
     class Meta:
         model = Autor
         fields = ('nombre', 'apellidos', 'descripcion', 'habilitado')
+
+
+# SucursalForm
+# Formulario de sucursales.
+class SucursalForm(ModelForm):
+    class Meta:
+        model = Sucursal
+        fields = ('nombre', 'encargado', 'direccion', 'habilitado')

@@ -126,4 +126,4 @@ MEDIA_URL = '/media/'
 
 
 # Definiendo cantidad de registros por pagina.
-REGISTROS_POR_PAGINA = 5
+REGISTROS_POR_PAGINA = 10

@@ -13,16 +13,9 @@
   <link rel="icon" href="{% static 'img/favicon.ico' %}">
 
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/starter-template.css' %}" />
   <link rel="stylesheet" href="{% static 'css/jumbotron.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/signin.css' %}" />
   <link rel="stylesheet" href="{% static 'css/sticky-footer-navbar.css' %}">
-  {% block cssHead %}
-  {% endblock %}
 
-  <script src="{% static 'js/jquery/jquery-3.3.1.min.js' %}"></script>
-  <script src="{% static 'js/popper/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
   {% block jsHead %}
   {% endblock %}
 </head>
@@ -41,7 +34,7 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'irInicio' %}"> Inicio <span class="sr-only">(actual)</span></a>
           </li>
           {% if not request.user.is_authenticated %}
@@ -62,17 +55,25 @@
       </div>
     </nav>
 
-    {% block contenido %}
-    {% endblock %}
+    <main role="main">
+      <div class="jumbotron">
+          <div class="container">
+            {% block contenido %}
+            {% endblock %}
+          </div>
+      </div>
+    </main>
+
   </div>
 
   <footer class="footer">
-      <div class="container">
         <span class="text-muted">GesBod - Copyright 2019.</span>
-      </div>
     </footer>
 
 
+    <script src="{% static 'js/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
   {% block jsBody %}
   {% endblock %}
 </body>

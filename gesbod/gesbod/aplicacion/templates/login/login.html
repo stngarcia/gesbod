@@ -7,22 +7,20 @@
 
 {% block contenido %}
 
-<form class="form-signin" method="post">
-  <p class="text-center">
-    <img class="mb-4" src="{% static 'img/login.png' %}" alt="" width="72" height="72" />
-  </p>
-  <h1 class="h1 mb-3 font-weight-normal text-center">Iniciar sesión.</h1>
-  {% csrf_token %}
+  <form class="form-horizontal" role="form" method="post">
+      <p class="text-center">
+          <img class="mb-4" src="{% static 'img/login.png' %}" alt="" width="72" height="72" />
+          <h1 class="h1 mb-3 font-weight-normal text-center">Iniciar sesión.</h1>
+        </p>
+    {% csrf_token %}
 
-  {% if form.non.field.errors %}
-    {{ form.non.field.errors }}
-  {% endif %}
-  
-  {% for field in form.visible_fields %}
-    {{ field.label_tag }}
-    {{ field }}
-  {% endfor %}
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-</form>
+    {% for field in form.visible_fields %}
+      <div class="form-group">
+          <label class="control-label col-sm-2" for="{{ field.name }}">{{ field.label_tag }}:</label>
+          {{ field }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-primary" type="submit">Entrar</button>
+  </form>
 
 {% endblock %}
