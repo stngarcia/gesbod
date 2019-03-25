@@ -5,7 +5,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView, D
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.db.models import Q
-from gesbod.aplicacion.forms import UsuarioForm
+from gesbod.aplicacion.forms.usuario import UsuarioForm
 
 
 # ListaDeUsuarios

@@ -5,7 +5,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 from django.db.models import Q
 from gesbod.aplicacion.models import Autor
-from gesbod.aplicacion.forms import AutorForm
+from gesbod.aplicacion.forms.autor import AutorForm
 
 
 # ListaDeAutores

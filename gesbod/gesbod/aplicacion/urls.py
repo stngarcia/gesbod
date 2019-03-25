@@ -7,10 +7,10 @@ urlpatterns = [
     url(r'^$', inicio.irInicio, name='irInicio'),
 
     # Rutas de las sesiones.
-    url(r'^iniciarSesion/$', login.iniciarSesion, name='iniciarSesion'),
-    url(r'^cerrarSesion/$', login.cerrarSesion, name='cerrarSesion'),
-    url(r'^denegarAcceso/$', login.denegarAcceso, name='denegarAcceso'),
-    url(r'^restringirAcceso/$', login.restringirAcceso, name='restringirAcceso'),
+    url(r'^login/iniciarSesion/$', login.iniciarSesion, name='iniciarSesion'),
+    url(r'^login/cerrarSesion/$', login.cerrarSesion, name='cerrarSesion'),
+    url(r'^login/denegarAcceso/$', login.denegarAcceso, name='denegarAcceso'),
+    url(r'^login/restringirAcceso/$', login.restringirAcceso, name='restringirAcceso'),
 
     # Rutas para las cuentas de usuario.
     url(r'^lista/usuario/$', usuarios.ListaDeUsuarios.as_view(),

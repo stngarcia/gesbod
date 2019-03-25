@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
-from gesbod.aplicacion.forms import IniciarSesionForm
+from gesbod.aplicacion.forms.login import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -9,13 +9,11 @@ from django.contrib.auth.decorators import login_required
 # iniciarSesion()
 # Vista que permite el inicio de sesion.
 def iniciarSesion(request):
-    form = IniciarSesionForm(request.POST)
+    form = LoginForm(request.POST)
     if form.is_valid():
         data = form.cleaned_data
         user = authenticate(
             username=data.get("username"), password=data.get("password"))
-        print("estado del weon!")
-        print(user)
         if user is not None:
             login(request, user)
             return redirect('irInicio')

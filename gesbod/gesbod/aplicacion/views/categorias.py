@@ -5,7 +5,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView, D
 from django.urls import reverse_lazy
 from django.db.models import Q
 from gesbod.aplicacion.models import Categoria
-from gesbod.aplicacion.forms import CategoriaForm
+from gesbod.aplicacion.forms.categoria import CategoriaForm
 
 
 # ListaDeCategorias
