@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from gesbod.aplicacion.models import Sucursal
+from gesbod.aplicacion.models.sucursal import Sucursal
 
 
 # SucursalForm

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from gesbod.aplicacion.models import Autor
+from gesbod.aplicacion.models.autor import Autor
 
 
 # AutorForm

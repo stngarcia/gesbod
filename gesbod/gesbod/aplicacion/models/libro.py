@@ -1,21 +1,20 @@
 from django.db import models
-from gesbod.aplicacion.models import Autor, Categoria, Idioma, Editorial
+from gesbod.aplicacion.models import autor, categoria, idioma, editorial
+
 
 # Libro
 # Clase que define un libro.
-
-
 class Libro(models.Model):
     titulo = models.CharField(max_length=150)
-    ISBN = models.CharField(max_length=30, verbose_name='ISBN')
+    isbn = models.CharField(max_length=30, verbose_name='ISBN')
     autor = models.ForeignKey(
-        Autor, on_delete=models.SET_NULL, null=True, help_text='Seleccione un autor')
-    Editorial = models.ForeignKey(
-        Editorial, on_delete=models.SET_NULL, null=True, help_text='Seleccione una editorial')
+        autor.Autor, on_delete=models.SET_NULL, null=True, help_text='Seleccione un autor')
+    editorial = models.ForeignKey(
+        editorial.Editorial, on_delete=models.SET_NULL, null=True, help_text='Seleccione una editorial')
     categoria = models.ManyToManyField(
-        Categoria, help_text='Seleccione una categoría')
-    Idioma = models.ForeignKey(
-        Idioma, on_delete=models.SET_NULL, null=True, help_text='Seleccione un idioma')
+        categoria.Categoria, help_text='Seleccione una categoría')
+    idioma = models.ForeignKey(
+        idioma.Idioma, on_delete=models.SET_NULL, null=True, help_text='Seleccione un idioma')
     sinopsis = models.TextField(
         max_length=1000, null=True, blank=True, help_text='Ingrese la sinopsis')
     disponible = models.BooleanField(

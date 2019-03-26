@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from gesbod.aplicacion.models import Categoria
+from gesbod.aplicacion.models.categoria import Categoria
 
 
 # CategoriaForm

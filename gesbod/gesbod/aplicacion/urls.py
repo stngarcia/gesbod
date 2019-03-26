@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from gesbod.aplicacion.views import inicio, login, usuarios, editoriales, categorias, autores, sucursales
+from gesbod.aplicacion.views import inicio, login, usuarios, editoriales, categorias, autores, sucursales, libros
 
 
 urlpatterns = [
@@ -10,7 +10,8 @@ urlpatterns = [
     url(r'^login/iniciarSesion/$', login.iniciarSesion, name='iniciarSesion'),
     url(r'^login/cerrarSesion/$', login.cerrarSesion, name='cerrarSesion'),
     url(r'^login/denegarAcceso/$', login.denegarAcceso, name='denegarAcceso'),
-    url(r'^login/restringirAcceso/$', login.restringirAcceso, name='restringirAcceso'),
+    url(r'^login/restringirAcceso/$',
+        login.restringirAcceso, name='restringirAcceso'),
 
     # Rutas para las cuentas de usuario.
     url(r'^lista/usuario/$', usuarios.ListaDeUsuarios.as_view(),
@@ -71,4 +72,16 @@ urlpatterns = [
         sucursales.EliminarSucursal.as_view(), name='eliminarSucursal'),
     url(r'^ver/sucursal/(?P<pk>\d+)$',
         sucursales.VerSucursal.as_view(), name='verSucursal'),
+
+    # Rutas para los libros.
+    url(r'^lista/libro/$', libros.ListaDeLibros.as_view(),
+        name='listaDeLibros'),
+    url(r'^registrar/libro/$', libros.RegistrarLibro.as_view(),
+        name='registrarLibro'),
+    url(r'^editar/libro/(?P<pk>\d+)$',
+        libros.EditarLibro.as_view(), name='editarLibro'),
+    url(r'^eliminar/libro/(?P<pk>\d+)$',
+        libros.EliminarLibro.as_view(), name='eliminarLibro'),
+    url(r'^ver/libro/(?P<pk>\d+)$',
+        libros.VerLibro.as_view(), name='verLibro'),
 ]

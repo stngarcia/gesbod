@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block titleHead %}
+<title>GesBod - Ver libro.</title>
+{% endblock %}
+
+{% block contenido %}
+
+  <h1>Información de libro.</h1>
+
+  <table class="table table-responsive table-bordered table-hover table-striped">
+      <tbody>
+              <tr>
+                <td>Id</td>
+                <td>{{ libro.id }}</td>
+              </tr>
+              <tr>
+                <td>Título</td>
+                <td>{{ libro.titulo }}</td>
+              </tr>
+              <tr>
+                <td>ISBN</td>
+                <td>{{ libro.isbn }} {{ user.last_name }}</td>
+              </tr>
+              <tr>
+                <td>Autor</td>
+                <td>{{ libro.autor.nombre }} {{ user.last_name }}</td>
+              </tr>
+              <tr>
+                <td>Categoría</td>
+                <td>{{ libro.categoria.nombre }} {{ user.last_name }}</td>
+              </tr>
+              <tr>
+                <td>Editorial</td>
+                <td>{{ libro.editorial.nombre }} {{ user.last_name }}</td>
+              </tr>
+              <tr>
+                <td>Idioma</td>
+                <td>{{ libro.idioma.nombre }} {{ user.last_name }}</td>
+              </tr>
+              <tr>
+                <td>Estado</td>
+                {% if libro.disponible %}
+                  <td>Disponible</td>
+                {% else %}
+                  <td>Agotado</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                    <a class="btn btn-light" href="{% url 'editarLibro' libro.id %}" role="button"> Editar </a>
+                    <a class="btn btn-light" href="{% url 'eliminarLibro' libro.id %}" role="button"> Eliminar </a>
+                </td>
+              </tr>
+      </tbody>
+    </table>
+    <a class="btn btn-primary" href="{% url 'listaDeLibros' %}" role="button"> Volver </a></p>
+
+ {% endblock %}

@@ -5,7 +5,7 @@ from django.db import models
 # Clase que define un idioma.
 class Idioma(models.Model):
     nombre = models.CharField(max_length=50)
-    habilitado = models.BooleanField(default=True)
+    iso_code = models.CharField(max_length=5)
 
     class Meta:
         ordering = ('nombre',)

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from gesbod.aplicacion.models import Editorial
+from gesbod.aplicacion.models.editorial import Editorial
 
 
 # EditorialForm

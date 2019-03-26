@@ -4,7 +4,7 @@ from functools import reduce
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.db.models import Q
-from gesbod.aplicacion.models import Editorial
+from gesbod.aplicacion.models.editorial import Editorial
 from gesbod.aplicacion.forms.editorial import EditorialForm
 
 
