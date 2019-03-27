@@ -20,23 +20,27 @@
               </tr>
               <tr>
                 <td>ISBN</td>
-                <td>{{ libro.isbn }} {{ user.last_name }}</td>
+                <td>{{ libro.isbn }}</td>
               </tr>
               <tr>
                 <td>Autor</td>
-                <td>{{ libro.autor.nombre }} {{ user.last_name }}</td>
+                <td>{{ libro.autor.nombre }} {{ libro.autor.apellidos }}</td>
               </tr>
               <tr>
                 <td>Categoría</td>
-                <td>{{ libro.categoria.nombre }} {{ user.last_name }}</td>
+                <td>
+                  {% for categoria in libro.categoria_list %}
+                  {{ categoria.nombre }}
+                  {% endfor %}
+                </td>
               </tr>
               <tr>
                 <td>Editorial</td>
-                <td>{{ libro.editorial.nombre }} {{ user.last_name }}</td>
+                <td>{{ libro.editorial.nombre }}</td>
               </tr>
               <tr>
                 <td>Idioma</td>
-                <td>{{ libro.idioma.nombre }} {{ user.last_name }}</td>
+                <td>{{ libro.idioma.nombre }}</td>
               </tr>
               <tr>
                 <td>Estado</td>

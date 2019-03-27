@@ -38,7 +38,7 @@
                 <td>{{ libro.id }}</td>
                   <td>{{ libro.titulo }}</td>
                   <td>{{ libro.isbn }} {{ usuario.last_name }}</td>
-                  <td>{{ libro.autor.nombre }} {{ usuario.last_name }}</td>
+                  <td>{{ libro.autor.nombre }} {{ usuario.last_name }} {{ libro.autor.apellidos }}</td>
                   <td>{{ libro.categoria.nombre }} {{ usuario.last_name }}</td>
                   {% if libro.disponible %}
                     <td>

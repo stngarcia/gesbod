@@ -14,4 +14,4 @@ class Autor(models.Model):
         ordering = ('nombre', 'apellidos',)
 
     def __str__(self):
-        return self.nombre
+        return self.nombre + ' ' + self.apellidos
