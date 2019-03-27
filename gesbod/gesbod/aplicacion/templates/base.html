@@ -42,11 +42,6 @@
               <a class="nav-link" href="{% url 'iniciarSesion' %}"> Iniciar sesión </a>
             </li>
           {% else %}
-              {% if request.user.is_superuser %}
-              <li class="nav-item">
-                  <a class="nav-link" href="#"> Inicializar base de datos </a>
-                </li>
-              {% endif %}
               <li class="nav-item">
               <a class="nav-link" href="{% url 'cerrarSesion' %}"> Cerrar sesión </a>
             </li>
