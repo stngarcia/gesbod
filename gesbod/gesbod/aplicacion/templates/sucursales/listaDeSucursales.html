@@ -49,14 +49,8 @@
                     </td>
                   {% endif %}
                   <td>
-                      <a class="btn btn-light" href="{% url 'verSucursal' sucursal.id %}" role="button">
-                          <span class="glyphicon glyphicon-info-sign"> Ver</span>
-                      </a>
-                      <a class="btn btn-light" href="{% url 'editarSucursal' sucursal.id %}" role="button">
-                        <span class="glyphicon glyphicon-edit"> Editar</span>
-                      </a>
-                      <a class="btn btn-light" href="{% url 'eliminarSucursal' sucursal.id %}" role="button">
-                          <span class="glyphicon glyphicon-remove-circle"> Eliminar</span>
+                      <a class="btn btn-light" href="{{ sucursal.get_absolute_url }}" role="button">
+                          <span class="glyphicon glyphicon-info-sign"> Detalles</span>
                       </a>
                   </td>
               </tr>

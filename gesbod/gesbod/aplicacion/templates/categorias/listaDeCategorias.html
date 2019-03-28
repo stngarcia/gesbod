@@ -37,9 +37,7 @@
                     <td>Inhabilitada</td>
                   {% endif %}
                   <td>
-                      <a class="btn btn-light" href="{% url 'verCategoria' categoria.id %}" role="button"> Ver </a>
-                      <a class="btn btn-light" href="{% url 'editarCategoria' categoria.id %}" role="button"> Editar </a>
-                      <a class="btn btn-light" href="{% url 'eliminarCategoria' categoria.id %}" role="button"> Eliminar </a>
+                      <a class="btn btn-light" href="{{ categoria.get_absolute_url }}" role="button"> Detalles </a>
                   </td>
               </tr>
             {% endfor %}

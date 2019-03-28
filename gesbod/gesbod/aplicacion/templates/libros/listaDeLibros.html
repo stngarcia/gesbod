@@ -20,14 +20,13 @@
   </p>
   <hr>
     {% if libro_list %}
-    <table class="table table-responsive table-bordered">
+    <table class="table table-responsive table-bordered table-condensed">
       <thead>
         <tr>
           <th>Id</th>
           <th>Título</th>
           <th>ISBN</th>
           <th>Autor</th>
-          <th>Categoria</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
@@ -37,28 +36,18 @@
               <tr>
                 <td>{{ libro.id }}</td>
                   <td>{{ libro.titulo }}</td>
-                  <td>{{ libro.isbn }} {{ usuario.last_name }}</td>
-                  <td>{{ libro.autor.nombre }} {{ usuario.last_name }} {{ libro.autor.apellidos }}</td>
-                  <td>{{ libro.categoria.nombre }} {{ usuario.last_name }}</td>
-                  {% if libro.disponible %}
-                    <td>
-                        <span class="glyphicon glyphicon-ok"> Disponible</span>
-                    </td>
-                  {% else %}
-                    <td>
-                        <spam
-                         class="glyphicon glyphicon-remove"> Agotado</spam>
-                    </td>
-                  {% endif %}
+                  <td>{{ libro.isbn }}</td>
+                  <td>{{ libro.autor.nombre }} {{ libro.autor.apellidos }}</td>
                   <td>
-                      <a class="btn btn-light" href="{% url 'verLibro' libro.id %}" role="button">
-                          <span class="glyphicon glyphicon-info-sign"> Ver</span>
-                      </a>
-                      <a class="btn btn-light" href="{% url 'editarLibro' libro.id %}" role="button">
-                        <span class="glyphicon glyphicon-edit"> Editar</span>
-                      </a>
-                      <a class="btn btn-light" href="{% url 'eliminarLibro' libro.id %}" role="button">
-                          <span class="glyphicon glyphicon-remove-circle"> Eliminar</span>
+                      {% if libro.disponible %}
+                        <span class="glyphicon glyphicon-ok"> Disponible</span>
+                      <{% else %}
+                        <spam class="glyphicon glyphicon-remove"> Agotado</spam>
+                      {% endif %}
+                  </td>
+                  <td>
+                      <a class="btn btn-light" href="{{ libro.get_absolute_url }}" role="button">
+                          <span class="glyphicon glyphicon-info-sign"> Detalles</span>
                       </a>
                   </td>
               </tr>

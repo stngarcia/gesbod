@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Categoria
@@ -9,6 +10,15 @@ class Categoria(models.Model):
 
     class Meta:
         ordering = ('nombre',)
+
+    def get_absolute_url(self):
+        return reverse('verCategoria', args=[self.id])
+
+    def get_update_url(self):
+        return reverse('editarCategoria', args=[self.id])
+
+    def get_delete_url(self):
+        return reverse('eliminarCategoria', args=[self.id])
 
     def __str__(self):
         return self.nombre

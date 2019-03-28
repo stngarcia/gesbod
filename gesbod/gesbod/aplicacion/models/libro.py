@@ -1,5 +1,6 @@
 from django.db import models
 from gesbod.aplicacion.models import autor, categoria, idioma, editorial
+from django.urls import reverse
 
 
 # Libro
@@ -22,6 +23,15 @@ class Libro(models.Model):
 
     class meta:
         ordering = ('titulo',)
+
+    def get_absolute_url(self):
+        return reverse('verLibro', args=[self.id])
+
+    def get_update_url(self):
+        return reverse('editarLibro', args=[self.id])
+
+    def get_delete_url(self):
+        return reverse('eliminarLibro', args=[self.id])
 
     def __str__(self):
         return self.titulo

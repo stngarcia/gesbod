@@ -24,13 +24,14 @@
               </tr>
               <tr>
                 <td>Autor</td>
-                <td>{{ libro.autor.nombre }} {{ libro.autor.apellidos }}</td>
+                <td>{{ libro.autor.nombre_completo }}</td>
               </tr>
               <tr>
                 <td>Categoría</td>
                 <td>
-                  {% for categoria in libro.categoria_list %}
-                  {{ categoria.nombre }}
+                  {% for categoria in libro.categoria.all %}
+                  {{ categoria }}
+                  {% if not forloop.last %},{% endif %}
                   {% endfor %}
                 </td>
               </tr>
@@ -53,8 +54,8 @@
               <tr>
                 <td></td>
                 <td>
-                    <a class="btn btn-light" href="{% url 'editarLibro' libro.id %}" role="button"> Editar </a>
-                    <a class="btn btn-light" href="{% url 'eliminarLibro' libro.id %}" role="button"> Eliminar </a>
+                    <a class="btn btn-light" href="{{ libro.get_update_url }}" role="button"> Editar </a>
+                    <a class="btn btn-light" href="{{ libro.get_delete_url }}" role="button"> Eliminar </a>
                 </td>
               </tr>
       </tbody>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Sucursal
@@ -11,6 +12,15 @@ class Sucursal(models.Model):
 
     class meta:
         ordering = ('nombre',)
+
+    def get_absolute_url(self):
+        return reverse('verSucursal', args=[self.id])
+
+    def get_update_url(self):
+        return reverse('editarSucursal', args=[self.id])
+
+    def get_delete_url(self):
+        return reverse('eliminarSucursal', args=[self.id])
 
     def __str__(self):
         return self.nombre

@@ -29,8 +29,8 @@
               <tr>
                 <td></td>
                 <td>
-                    <a class="btn btn-light" href="{% url 'editarCategoria' categoria.id %}" role="button"> Editar </a>
-                    <a class="btn btn-light" href="{% url 'eliminarCategoria' categoria.id %}" role="button"> Eliminar </a>
+                    <a class="btn btn-light" href="{{ categoria.get_update_url }}" role="button"> Editar </a>
+                    <a class="btn btn-light" href="{{ categoria.get_delete_url }}" role="button"> Eliminar </a>
                 </td>
               </tr>
       </tbody>

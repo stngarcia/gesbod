@@ -25,7 +25,6 @@
         <tr>
           <th>Id</th>
           <th>Nombre</th>
-          <th>Apellidos</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
@@ -34,27 +33,17 @@
             {% for autor in autor_list %}
               <tr>
                 <td>{{ autor.id }}</td>
-                  <td>{{ autor.nombre }}</td>
-                  <td>{{ autor.apellidos }} {{ usuario.last_name }}</td>
-                  {% if autor.habilitado %}
-                    <td>
-                        <span class="glyphicon glyphicon-ok"> Activo</span>
-                    </td>
-                  {% else %}
-                    <td>
-                        <spam
-                         class="glyphicon glyphicon-remove"> Inhabilitado</spam>
-                    </td>
-                  {% endif %}
+                  <td>{{ autor.nombre_completo }}</td>
                   <td>
-                      <a class="btn btn-light" href="{% url 'verAutor' autor.id %}" role="button">
-                          <span class="glyphicon glyphicon-info-sign"> Ver</span>
-                      </a>
-                      <a class="btn btn-light" href="{% url 'editarAutor' autor.id %}" role="button">
-                        <span class="glyphicon glyphicon-edit"> Editar</span>
-                      </a>
-                      <a class="btn btn-light" href="{% url 'eliminarAutor' autor.id %}" role="button">
-                          <span class="glyphicon glyphicon-remove-circle"> Eliminar</span>
+                    {% if autor.habilitado %}
+                      <span class="glyphicon glyphicon-ok"> Activo</span>
+                    {% else %}
+                      <spam class="glyphicon glyphicon-remove"> Inhabilitado</spam>
+                    {% endif %}
+                  </td>
+                  <td>
+                      <a class="btn btn-light" href="{{ autor.get_absolute_url }}" role="button">
+                          <span class="glyphicon glyphicon-info-sign"> Detalles</span>
                       </a>
                   </td>
               </tr>
