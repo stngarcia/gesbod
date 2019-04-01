@@ -1,11 +1,14 @@
 import operator
 from django.conf import settings
+
+from django.shortcuts import redirect, render
 from functools import reduce
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.db.models import Q
-from gesbod.aplicacion.models.libro import Libro
-from gesbod.aplicacion.forms.libro import LibroCreateForm, LibroUpdateForm
+from gesbod.aplicacion.models.libro import Libro, Ejemplar_libro
+from gesbod.aplicacion.forms.libro import LibroForm, AgregarEjemplarForm
+from django.contrib.auth.decorators import login_required
 
 
 # ListaDeLibros
@@ -40,7 +43,7 @@ class VerLibro(DetailView):
 class RegistrarLibro(CreateView):
     model = Libro
     template_name = 'libros/registrarLibro.html'
-    form_class = LibroCreateForm
+    form_class = LibroForm
     success_url = reverse_lazy('listaDeLibros')
 
 
@@ -48,7 +51,7 @@ class RegistrarLibro(CreateView):
 # Clase que permite editar la informacion de un libro.
 class EditarLibro(UpdateView):
     model = Libro
-    form_class = LibroUpdateForm
+    form_class = LibroForm
     template_name = 'libros/editarLibro.html'
     success_url = reverse_lazy('listaDeLibros')
 
@@ -59,3 +62,32 @@ class EliminarLibro(DeleteView):
     model = Libro
     template_name = 'libros/eliminarLibro.html'
     success_url = reverse_lazy('listaDeLibros')
+
+
+# agregarEjemplar
+# Vista que permite agregar ejemplares a un libro.
+@login_required
+def agregarEjemplar(request, pkLibro):
+    form = AgregarEjemplarForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data
+        miLibro = Libro.objects.get(id=pkLibro)
+        print(data.get('cantidad_ejemplares'))
+        i = 1
+        cant = int(data.get('cantidad_ejemplares'))
+        while (i <= cant):
+            miEjemplar = Ejemplar_libro()
+            miEjemplar.libro = miLibro
+            miEjemplar.orden_compra = data.get('orden_compra')
+            miEjemplar.save()
+            i = i+1
+        miLibro.cantidad_ejemplares = miLibro.cantidad_ejemplares + \
+            data.get('cantidad_ejemplares')
+        miLibro.save()
+        return redirect('verLibro', pk=miLibro.id)
+    else:
+        miLibro = Libro.objects.get(id=pkLibro)
+        form = AgregarEjemplarForm(request.POST)
+    return render(request, "libros/agregarEjemplar.html", {
+        'form': form,
+        'libro': miLibro})

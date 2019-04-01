@@ -27,7 +27,6 @@
           <th>Título</th>
           <th>ISBN</th>
           <th>Autor</th>
-          <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -37,14 +36,7 @@
                 <td>{{ libro.id }}</td>
                   <td>{{ libro.titulo }}</td>
                   <td>{{ libro.isbn }}</td>
-                  <td>{{ libro.autor.nombre }} {{ libro.autor.apellidos }}</td>
-                  <td>
-                      {% if libro.disponible %}
-                        <span class="glyphicon glyphicon-ok"> Disponible</span>
-                      <{% else %}
-                        <spam class="glyphicon glyphicon-remove"> Agotado</spam>
-                      {% endif %}
-                  </td>
+                  <td>{{ libro.autor.nombre_completo }}</td>
                   <td>
                       <a class="btn btn-light" href="{{ libro.get_absolute_url }}" role="button">
                           <span class="glyphicon glyphicon-info-sign"> Detalles</span>

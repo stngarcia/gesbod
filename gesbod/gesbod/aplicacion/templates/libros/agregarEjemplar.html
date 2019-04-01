@@ -8,7 +8,10 @@
 
   <h1>Edición de libro.</h1>
   <p class="lead">
-      Modifique los datos del  libro.
+      Ingrese los datos requeridos para ingresar ejemplares del libro.<br>
+      libro: {{ libro.titulo }}<br>
+      Autor: {{ libro.autor.nombre_completo }}<br>
+      Ejemplares: {{ libro.cantidad_ejemplares }}
   </p>
   <form method="post">
     {% csrf_token %}
@@ -23,8 +26,8 @@
           {{ field }}
         </div>
     {% endfor %}
-    <button class="btn btn-lg btn-primary " type="submit"> Grabar </button>
-    <a class="btn btn-light" href="{{ libro.get_absolute_url }}" role="button"> Cancelar </a></p>
+    <button class="btn btn-lg btn-primary " type="submit"> Agregar ejemplares </button>
+    <a class="btn btn-light" href="{{ libro.get_absolute_url " role="button"> Cancelar </a></p>
   </form>
 
  {% endblock %}

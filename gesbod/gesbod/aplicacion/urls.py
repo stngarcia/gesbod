@@ -84,4 +84,8 @@ urlpatterns = [
         libros.EliminarLibro.as_view(), name='eliminarLibro'),
     url(r'^ver/libro/(?P<pk>\d+)$',
         libros.VerLibro.as_view(), name='verLibro'),
+
+    # Rutas de los ejemplares de libros.
+    url(r'^agregar/libro/ejemplar/(?P<pkLibro>\d+)$',
+        libros.agregarEjemplar, name='agregarEjemplar'),
 ]

@@ -127,3 +127,7 @@ MEDIA_URL = '/media/'
 
 # Definiendo cantidad de registros por pagina.
 REGISTROS_POR_PAGINA = 10
+
+
+# Rutas de login.
+LoGIN_URL = 'iniciarSesion'

@@ -44,18 +44,17 @@
                 <td>{{ libro.idioma.nombre }}</td>
               </tr>
               <tr>
-                <td>Estado</td>
-                {% if libro.disponible %}
-                  <td>Disponible</td>
-                {% else %}
-                  <td>Agotado</td>
-                {% endif %}
+                <td>Cantidad de ejemplares</td>
+                <td>{{ libro.cantidad_ejemplares }}</td>
               </tr>
               <tr>
                 <td></td>
                 <td>
                     <a class="btn btn-light" href="{{ libro.get_update_url }}" role="button"> Editar </a>
-                    <a class="btn btn-light" href="{{ libro.get_delete_url }}" role="button"> Eliminar </a>
+                    {% if libro.cantidad_ejemplares is 0 %}
+                      <a class="btn btn-light" href="{{ libro.get_delete_url }}" role="button"> Eliminar </a>
+                    {% endif %}
+                    <a class="btn btn-light" href="{{ libro.get_add_instance_url }}" role="button"> Agregar ejemplares </a>
                 </td>
               </tr>
       </tbody>

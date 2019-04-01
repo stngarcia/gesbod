@@ -1,6 +1,8 @@
+import uuid
 from django.db import models
-from gesbod.aplicacion.models import autor, categoria, idioma, editorial
+from gesbod.aplicacion.models import autor, categoria, idioma, editorial, sucursal
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Libro
@@ -18,8 +20,8 @@ class Libro(models.Model):
         idioma.Idioma, on_delete=models.SET_NULL, null=True, help_text='Seleccione un idioma')
     sinopsis = models.TextField(
         max_length=1000, null=True, blank=True, help_text='Ingrese la sinopsis')
-    disponible = models.BooleanField(
-        default=True, verbose_name='Estado actual')
+    cantidad_ejemplares = models.PositiveIntegerField(
+        default=0, verbose_name='Cantidad de ejemplares', validators=[MaxValueValidator(999)])
 
     class meta:
         ordering = ('titulo',)
@@ -33,5 +35,34 @@ class Libro(models.Model):
     def get_delete_url(self):
         return reverse('eliminarLibro', args=[self.id])
 
+    def get_add_instance_url(self):
+        return reverse('agregarEjemplar', args=[self.id])
+
     def __str__(self):
         return self.titulo
+
+
+# AgregarEjemplar
+# Clase para agregar ejemplares de libros.
+class AgregarEjemplar(models.Model):
+    orden_compra = models.CharField(
+        max_length=25, null=True, blank=True, help_text='Ingrese nro. orden de compra')
+    cantidad_ejemplares = models.IntegerField(
+        default=1, verbose_name='Cantidad de ejemplares', validators=[MaxValueValidator(99), MinValueValidator(1)])
+
+
+# Ejemplar
+# Clase que define un ejemplar de un libro.
+class Ejemplar_libro(models.Model):
+    ESTADO_LIBRO = (
+        ('a', 'Agotado'), ('d', 'Disponible'), ('r', 'Reservado'),)
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                          help_text='Identificador del ejemplar')
+    libro = models.ForeignKey(Libro, on_delete=models.SET_NULL, null=True)
+    orden_compra = models.CharField(
+        max_length=25, null=True, blank=True, help_text='Ingrese nro. orden de compra')
+    estado = models.CharField(max_length=1, choices=ESTADO_LIBRO,
+                              blank=True, default='d', help_text='Seleccione estado')
+    sucursal = models.ForeignKey(
+        sucursal.Sucursal, on_delete=models.SET_NULL, null=True, help_text='Seleccione una sucursal')
