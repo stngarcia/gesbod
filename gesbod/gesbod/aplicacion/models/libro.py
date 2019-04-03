@@ -38,6 +38,9 @@ class Libro(models.Model):
     def get_add_instance_url(self):
         return reverse('agregarEjemplar', args=[self.id])
 
+    def get_list_instance_url(self):
+        return reverse('listarEjemplares', args=[self.id])
+
     def __str__(self):
         return self.titulo
 
@@ -55,7 +58,10 @@ class AgregarEjemplar(models.Model):
 # Clase que define un ejemplar de un libro.
 class Ejemplar_libro(models.Model):
     ESTADO_LIBRO = (
-        ('a', 'Agotado'), ('d', 'Disponible'), ('r', 'Reservado'),)
+        ('v', 'Vendido'), ('d', 'Disponible'), ('r', 'Reservado'),)
+
+    retiro_LIBRO = (
+        ('t', 'Tienda'), ('d', 'Domicilio'))
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                           help_text='Identificador del ejemplar')
@@ -66,3 +72,9 @@ class Ejemplar_libro(models.Model):
                               blank=True, default='d', help_text='Seleccione estado')
     sucursal = models.ForeignKey(
         sucursal.Sucursal, on_delete=models.SET_NULL, null=True, help_text='Seleccione una sucursal')
+    nombre_cliente = models.CharField(
+        max_length=50, null=True, blank=True, help_text='Ingrese cliente que reserva el libro')
+    retirar_en = models.CharField(max_length=1, choices=ESTADO_LIBRO,
+                                  blank=True, default='t', help_text='Retirar en')
+    direccion_retiro = models.CharField(
+        max_length=100, null=True, blank=True, help_text='Ingrese dirección de retiro')

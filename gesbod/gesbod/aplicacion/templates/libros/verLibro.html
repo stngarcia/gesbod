@@ -55,6 +55,9 @@
                       <a class="btn btn-light" href="{{ libro.get_delete_url }}" role="button"> Eliminar </a>
                     {% endif %}
                     <a class="btn btn-light" href="{{ libro.get_add_instance_url }}" role="button"> Agregar ejemplares </a>
+                    {% if libro.cantidad_ejemplares is not 0  %}
+                    <a class="btn btn-light" href="{{ libro.get_list_instance_url }}" role="button"> Listar ejemplares </a>
+                    {% endif %}
                 </td>
               </tr>
       </tbody>

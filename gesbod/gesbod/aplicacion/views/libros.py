@@ -1,6 +1,7 @@
 import operator
 from django.conf import settings
-
+from django.http import HttpResponse
+from django.template import loader
 from django.shortcuts import redirect, render
 from functools import reduce
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
@@ -72,7 +73,6 @@ def agregarEjemplar(request, pkLibro):
     if form.is_valid():
         data = form.cleaned_data
         miLibro = Libro.objects.get(id=pkLibro)
-        print(data.get('cantidad_ejemplares'))
         i = 1
         cant = int(data.get('cantidad_ejemplares'))
         while (i <= cant):
@@ -91,3 +91,14 @@ def agregarEjemplar(request, pkLibro):
     return render(request, "libros/agregarEjemplar.html", {
         'form': form,
         'libro': miLibro})
+
+
+# listarEjemplares
+# Vista que permite listar los ejemplares de un libro.
+@login_required
+def listarEjemplares(request, pkLibro):
+    miLibro = Libro.objects.get(id=pkLibro)
+    misEjemplares = Ejemplar_libro.objects.filter(libro=miLibro)
+    miPlantilla = loader.get_template("libros/listaDeEjemplares.html")
+    miContexto = {'libro': miLibro, 'ejemplares_list': misEjemplares}
+    return HttpResponse(miPlantilla.render(miContexto, request))

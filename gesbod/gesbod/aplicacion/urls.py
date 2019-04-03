@@ -88,4 +88,6 @@ urlpatterns = [
     # Rutas de los ejemplares de libros.
     url(r'^agregar/libro/ejemplar/(?P<pkLibro>\d+)$',
         libros.agregarEjemplar, name='agregarEjemplar'),
+    url(r'^listar/libro/ejemplar/(?P<pkLibro>\d+)$',
+        libros.listarEjemplares, name='listarEjemplares'),
 ]
