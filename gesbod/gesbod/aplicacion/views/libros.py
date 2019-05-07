@@ -82,7 +82,7 @@ def agregarEjemplar(request, pkLibro):
             miEjemplar.save()
             i = i+1
         miLibro.cantidad_ejemplares = miLibro.cantidad_ejemplares + \
-            data.get('cantidad_ejemplares')
+            int(data.get('cantidad_ejemplares'))
         miLibro.save()
         return redirect('verLibro', pk=miLibro.id)
     else:

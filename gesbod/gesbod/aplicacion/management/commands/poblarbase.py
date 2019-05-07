@@ -3,6 +3,7 @@ from gesbod.aplicacion.models.autor import Autor
 from gesbod.aplicacion.models.categoria import Categoria
 from gesbod.aplicacion.models.editorial import Editorial
 from gesbod.aplicacion.models.idioma import Idioma
+from gesbod.aplicacion.models.estado import Estado
 from gesbod.aplicacion.models.sucursal import Sucursal
 from django.core.management.base import BaseCommand
 
@@ -11,7 +12,18 @@ class Command(BaseCommand):
     help = 'Ingresa valores de prueba para gesbod.'
 
     def handle(self, *args, **kwargs):
-        # Creando usuarios de ejemplo.
+        self.crearUsuarios()
+        self.crearAutores()
+        self.crearCategorias()
+        self.crearEditoriales()
+        self.crearIdiomas()
+        self.crearSucursales()
+        self.crearEstados()
+        print('Base de datos poblada para pruebas!')
+
+    # crearUsuarios()
+    # Metodo para crear los usuarios de ejemplo.
+    def crearUsuarios(self):
         print('Creando usuarios...')
         User.objects.create_superuser(first_name='Daniel', last_name='Garcia Asathor',
                                       username='admin', email='stngarcia8@gmail.com', password='libros_admin')
@@ -25,7 +37,11 @@ class Command(BaseCommand):
                                  username='p.briceno', email='pedro@gmail.com', password='libros_user')
         User.objects.create_user(first_name='Ignacio', last_name='Salazar Garcia',
                                  username='i.salazar', email='ignacio@gmail.com', password='libros_user')
-        # Creando autores de ejemplo.
+
+    # crearAutores()
+    # Metodo para crear autores de ejemplo.
+
+    def crearAutores(self):
         print('Creando autores...')
         myAutor = Autor(nombre='Joe', apellidos='Abercrombie',
                         descripcion='', habilitado=True)
@@ -36,7 +52,10 @@ class Command(BaseCommand):
         myAutor = Autor(nombre='Graham', apellidos='McNeill',
                         descripcion='', habilitado=True)
         myAutor.save()
-        # Creando categorias de ejemplo.
+
+    # crearCategorias()
+    # Metodo para crear las categorias de ejemplo.
+    def crearCategorias(self):
         print('Creando categorias...')
         myCategoria = Categoria(nombre='Ciencia ficción', habilitado=True)
         myCategoria.save()
@@ -44,7 +63,10 @@ class Command(BaseCommand):
         myCategoria.save()
         myCategoria = Categoria(nombre='Terror', habilitado=True)
         myCategoria.save()
-        # Creando editoriales de ejemplo.
+
+    # crearEditoriales()
+    # Metodo para crear editoriales de ejemplo.
+    def crearEditoriales(self):
         print('Creando editoriales...')
         myEditorial = Editorial(nombre='Prentice Hall', habilitado=True)
         myEditorial.save()
@@ -52,13 +74,19 @@ class Command(BaseCommand):
         myEditorial.save()
         myEditorial = Editorial(nombre='Black library', habilitado=True)
         myEditorial.save()
-        # Creando idiomas de ejemplo.
+
+    # crearIdiomas()
+    # Metodo para crear idiomas de ejemplo.
+    def crearIdiomas(self):
         print('Creando idiomas...')
         myIdioma = Idioma(nombre='Inglés', iso_code='en-us')
         myIdioma.save()
         myIdioma = Idioma(nombre='Español', iso_code='es-es')
         myIdioma.save()
-        # Creando sucursales de ejemplo.
+
+    # crearSucursales()
+    # Metodo para crear las sucursales de ejemplo.
+    def crearSucursales(self):
         print('Creando sucursales...')
         mySucursal = Sucursal(nombre='Sucursal Plaza Norte', encargado='Ernesto mado',
                               direccion='Plaza norte 1456', habilitado=True)
@@ -66,4 +94,14 @@ class Command(BaseCommand):
         mySucursal = Sucursal(nombre='Sucursal Plaza oeste', encargado='Ana Lisa Melano',
                               direccion='Plaza oeste 6541', habilitado=True)
         mySucursal.save()
-        print('Base de datos poblada para pruebas!')
+
+    # crearEstados()
+    # Metodo para crear los estados de los libros.
+    def crearEstados(self):
+        print('Creando estados...')
+        myEstado = Estado(nombre='Disponible')
+        myEstado.save()
+        myEstado = Estado(nombre='Destinado')
+        myEstado.save()
+        myEstado = Estado(nombre='Reservado')
+        myEstado.save()

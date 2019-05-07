@@ -1,8 +1,8 @@
 import uuid
 from django.db import models
-from gesbod.aplicacion.models import autor, categoria, idioma, editorial, sucursal
+from gesbod.aplicacion.models import autor, categoria, idioma, editorial, sucursal, estado
 from django.urls import reverse
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator
 
 
 # Libro
@@ -45,36 +45,15 @@ class Libro(models.Model):
         return self.titulo
 
 
-# AgregarEjemplar
-# Clase para agregar ejemplares de libros.
-class AgregarEjemplar(models.Model):
-    orden_compra = models.CharField(
-        max_length=25, null=True, blank=True, help_text='Ingrese nro. orden de compra')
-    cantidad_ejemplares = models.IntegerField(
-        default=1, verbose_name='Cantidad de ejemplares', validators=[MaxValueValidator(99), MinValueValidator(1)])
-
-
 # Ejemplar
 # Clase que define un ejemplar de un libro.
 class Ejemplar_libro(models.Model):
-    ESTADO_LIBRO = (
-        ('v', 'Vendido'), ('d', 'Disponible'), ('r', 'Reservado'),)
-
-    retiro_LIBRO = (
-        ('t', 'Tienda'), ('d', 'Domicilio'))
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
                           help_text='Identificador del ejemplar')
     libro = models.ForeignKey(Libro, on_delete=models.SET_NULL, null=True)
     orden_compra = models.CharField(
         max_length=25, null=True, blank=True, help_text='Ingrese nro. orden de compra')
-    estado = models.CharField(max_length=1, choices=ESTADO_LIBRO,
-                              blank=True, default='d', help_text='Seleccione estado')
+    estado = models.ForeignKey(
+        estado.Estado, on_delete=models.SET_NULL, null=True, help_text='Seleccione estado')
     sucursal = models.ForeignKey(
         sucursal.Sucursal, on_delete=models.SET_NULL, null=True, help_text='Seleccione una sucursal')
-    nombre_cliente = models.CharField(
-        max_length=50, null=True, blank=True, help_text='Ingrese cliente que reserva el libro')
-    retirar_en = models.CharField(max_length=1, choices=ESTADO_LIBRO,
-                                  blank=True, default='t', help_text='Retirar en')
-    direccion_retiro = models.CharField(
-        max_length=100, null=True, blank=True, help_text='Ingrese dirección de retiro')

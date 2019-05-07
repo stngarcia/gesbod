@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from gesbod.aplicacion.models.libro import Libro,  AgregarEjemplar
+from django import forms
+from gesbod.aplicacion.models.libro import Libro
 
 
 # LibroForm
@@ -13,7 +14,10 @@ class LibroForm(ModelForm):
 
 # AgregarEjemplarForm
 # Formulario para agregar ejemplares de libros.
-class AgregarEjemplarForm(ModelForm):
-    class Meta:
-        model = AgregarEjemplar
-        fields = ('orden_compra', 'cantidad_ejemplares')
+class AgregarEjemplarForm(forms.Form):
+    orden_compra = forms.CharField(
+        widget=forms.TextInput(), label="Orden de compra nro.")
+    cantidad_ejemplares = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'pattern': '[0-9]+', 'title': 'Enter numbers Only'}),
+        label="Cantidad ejemplares")
